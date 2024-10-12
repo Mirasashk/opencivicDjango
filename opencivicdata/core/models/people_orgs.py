@@ -280,7 +280,9 @@ class Post(OCDBase):
 
     class Meta:
         db_table = "opencivicdata_post"
-        index_together = [["organization", "label"]]
+        indexes = [
+        models.Index(fields=['organization', 'label']),
+        ]
 
     def __str__(self):
         return "{} - {} - {}".format(self.role, self.label, self.organization)
@@ -549,7 +551,10 @@ class Membership(OCDBase):
 
     class Meta:
         db_table = "opencivicdata_membership"
-        index_together = [["organization", "person", "label", "post"]]
+        indexes = [
+        models.Index(fields=['organization', 'person', 'label', 'post']),
+        ]
+       
 
     def __str__(self):
         return "{} in {} ({})".format(self.person, self.organization, self.role)
