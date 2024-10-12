@@ -146,10 +146,8 @@ class Organization(OCDBase):
 
     class Meta:
         db_table = "opencivicdata_organization"
-        index_together = [
-            ["jurisdiction", "classification", "name"],
-            ["classification", "name"],
-        ]
+        indexes = [models.Index(fields=[['jurisdiction', 'classification','name'],["classification", "name"]])]
+        
 
 
 class OrganizationIdentifier(IdentifierBase):

@@ -58,10 +58,7 @@ class VoteEvent(OCDBase):
 
     class Meta:
         db_table = "opencivicdata_voteevent"
-        index_together = [
-            ["legislative_session", "identifier", "bill"],
-            ["legislative_session", "bill"],
-        ]
+        indexes = [models.Index(fields=[["legislative_session", "identifier", "bill"], ["legislative_session", "bill"]])]
 
 
 class VoteCount(RelatedBase):
